@@ -21,6 +21,18 @@
     <repository>mvn:org.apache.karaf.assemblies.features/enterprise/${karaf.version}/xml/features</repository>
     <repository>mvn:org.apache.camel.karaf/apache-camel/${camel.version}/xml/features</repository>
 
+    <feature name="core" version="${project.version}" resolver="(obr)" start-level="30">
+        <feature version="${camel.version}">camel</feature>
+        <bundle dependency="true">mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.scala-library/${scala.bundle.version}</bundle>
+        <bundle>mvn:org.apache.servicemix.core/camel/${project.version}</bundle>
+    </feature>
+
+    <feature name="audit-mongodb" version="${project.version}" resolver="(obr)" start-level="30">
+        <bundle dependency="true">mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.scala-library/${scala.bundle.version}</bundle>
+        <bundle dependency="true">mvn:org.mongodb/mongo-java-driver/${mongodb.version}</bundle>
+        <bundle dependency="true">mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.casbah/${casbah.bundle.version}</bundle>
+        <bundle>mvn:org.apache.servicemix.audit/mongodb/${project.version}</bundle>
+    </feature>
 
     <feature name="connector" version="${version}" resolver="(obr)" start-level='50'>
         <feature version="${aries.transaction.version}">transaction</feature>
@@ -41,7 +53,6 @@
     -->
     <feature name="examples-activemq-camel-blueprint" version="${version}" resolver="(obr)">
         <feature version="${activemq.version}">activemq-broker</feature>
-        <feature version="${camel.version}">camel-jms</feature>
         <feature version="${camel.version}">camel-blueprint</feature>
         <bundle>mvn:org.apache.servicemix.examples/activemq-camel-blueprint/${version}</bundle>
     </feature>
@@ -112,10 +123,6 @@
         <feature version="${camel.version}">camel-jms</feature>
         <bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.drools/${drools.bundle.version}</bundle>
         <bundle>mvn:org.apache.servicemix.examples/camel-drools-blueprint/${version}</bundle>
-    </feature>
-    <feature name="examples-camel-cxf-rest" version="${version}" resolver="(obr)">
-        <bundle>mvn:org.apache.servicemix.examples/camel-cxf-rest-service/${version}</bundle>
-        <bundle>mvn:org.apache.servicemix.examples/camel-cxf-rest-route/${version}</bundle>
     </feature>
     <feature name="examples-cxf-ws-addressing" version="${version}" resolver="(obr)">
         <feature version="${cxf.version}">cxf</feature>
