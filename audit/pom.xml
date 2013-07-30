@@ -35,6 +35,7 @@
 
     <modules>
         <module>audit-mongodb</module>
+        <module>audit-ehcache</module>
     </modules>
 
 </project>
