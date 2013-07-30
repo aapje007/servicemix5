@@ -63,12 +63,12 @@ class ServiceMix extends Container {
     intercepts -= intercept
   }
 
-  def addProcessorFactory(dpf: DelegateProcessorFactory) = {
-    logger.info("Adding global processor factory: {}", dpf)
+  def addProcessorFactory(dpf: DelegateProcessorFactory) : Unit = {
+      logger.info("Adding global processor factory: {}", dpf)
     factory.addFactory(dpf)
   }
 
-  def removeProcessorFactory(dpf: DelegateProcessorFactory) = {
+  def removeProcessorFactory(dpf: DelegateProcessorFactory) : Unit = {
     logger.info("Removing global processor factory: {}", dpf)
     factory.removeFactory(dpf)
   }
